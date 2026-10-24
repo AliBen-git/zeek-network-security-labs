@@ -17,7 +17,6 @@ sudo apt-get upgrade
 
 Download the zeek source code from the official website (https://zeek.org/get-zeek/).
 
-Press enter or click to view image in full size
 
 
 ## Install dependencies using the below command.
@@ -27,7 +26,6 @@ sudo apt-get install cmake make gcc g++ flex bison libpcap-dev libssl-dev python
 
 sudo apt install -y libzmq3-dev pkg-config
 ```
-
 
 **Once all the dependencies are installed change the directory to the path where the Zeek source code file is downloaded and unzip the file.**
 
