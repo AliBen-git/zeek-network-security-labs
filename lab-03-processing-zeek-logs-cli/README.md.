@@ -1,0 +1,267 @@
+# Lab 3 – Processing Zeek Logs Using CLI
+
+## Overview
+
+This lab focuses on processing Zeek logs using Linux command-line interface (CLI) tools. Although graphical user interfaces (GUIs) are useful for visualizing information, command-line tools provide flexibility when searching, filtering, extracting, and analyzing large amounts of data.
+
+Security analysts need to know how to manipulate text and log data from the command line. These skills are useful when investigating network traffic, analyzing Zeek logs, and identifying potentially suspicious activity.
+
+## Objectives
+
+- Understand why CLI tools are useful for log analysis.
+- Read and inspect text files from the terminal.
+- Search, filter, sort, and count log data.
+- Extract specific fields from Zeek logs using `zeek-cut`.
+- Use `sed` and `awk` to select specific lines.
+- Combine commands using pipelines.
+- Prepare log data for further investigation.
+
+## 1. Why Use the CLI?
+
+Graphical tools can make information easier to visualize, but they may not provide every function needed for a specific investigation. CLI tools allow analysts to combine commands to locate and extract relevant evidence efficiently.
+
+Common tasks include:
+
+- Searching for keywords or indicators.
+- Extracting specific columns from log files.
+- Sorting and counting repeated values.
+- Selecting individual lines or line ranges.
+- Filtering Zeek logs to focus on relevant fields.
+
+## 2. Basic Commands
+
+### View command history
+
+```bash
+history
+```
+
+Execute the 10th command in the history:
+
+```bash
+!10
+```
+
+Execute the previous command again:
+
+```bash
+!!
+```
+
+## 3. Reading Files
+
+Display the contents of a file:
+
+```bash
+cat sample.txt
+```
+
+Display the first 10 lines:
+
+```bash
+head sample.txt
+```
+
+Display the last 10 lines:
+
+```bash
+tail sample.txt
+```
+
+These commands help analysts inspect a file before deciding how to process its contents.
+
+## 4. Finding and Filtering Data
+
+### Extract fields and characters
+
+Extract the first tab-separated field:
+
+```bash
+cut -f 1 test.txt
+```
+
+Extract the first character of each line:
+
+```bash
+cut -c 1 test.txt
+```
+
+### Search for a keyword
+
+```bash
+grep 'keywords' test.txt
+```
+
+### Exclude matching lines
+
+Display lines that do not contain `test`:
+
+```bash
+grep -v 'test' test.txt
+```
+
+Exclude lines matching either of two patterns:
+
+```bash
+grep -v -e 'test1' -e 'test2' test.txt
+```
+
+## 5. Sorting, Removing Duplicates, and Counting
+
+Sort lines alphabetically:
+
+```bash
+sort test.txt
+```
+
+Sort values numerically:
+
+```bash
+sort -n test.txt
+```
+
+Remove consecutive duplicate lines:
+
+```bash
+uniq test.txt
+```
+
+**Note:** `uniq` removes adjacent duplicate lines. To remove duplicates regardless of their original order, sort the input first.
+
+```bash
+sort test.txt | uniq
+```
+
+Count occurrences of each line:
+
+```bash
+sort test.txt | uniq -c
+```
+
+Sort values numerically in descending order:
+
+```bash
+sort -nr test.txt
+```
+
+Count the number of lines:
+
+```bash
+wc -l test.txt
+```
+
+Display line numbers:
+
+```bash
+nl test.txt
+```
+
+## 6. Selecting Lines with `sed` and `awk`
+
+Print line 11 using `sed`:
+
+```bash
+sed -n '11p' test.txt
+```
+
+Print lines 10 through 15:
+
+```bash
+sed -n '10,15p' test.txt
+```
+
+Print lines before line 11 using `awk`:
+
+```bash
+awk 'NR < 11 {print $0}' test.txt
+```
+
+Print only line 11 using `awk`:
+
+```bash
+awk 'NR == 11 {print $0}' test.txt
+```
+
+`sed` and `awk` are useful when an investigation requires specific lines or more flexible text processing.
+
+## 7. Additional Useful Commands
+
+Reverse the characters in each line:
+
+```bash
+rev test.txt
+```
+
+Split text using a dot as the delimiter and display the first two fields:
+
+```bash
+cut -d '.' -f 1-2 test.txt
+```
+
+Display information about a file:
+
+```bash
+file test.txt
+```
+
+Search recursively and case-insensitively for `Testvalue1` in files under the current directory, then format matching output into columns:
+
+```bash
+grep -rin 'Testvalue1' . | column -t
+```
+
+## 8. Extracting Zeek Log Fields with `zeek-cut`
+
+Zeek log files contain structured, tab-separated data. The `#fields` line identifies field names, while the `#types` line describes their data types.
+
+When using `zeek-cut`, specify the **field names**, not the data types.
+
+For example, extract selected fields from `signatures.log`:
+
+```bash
+cat signatures.log | zeek-cut uid src_addr dst_addr
+```
+
+This command requests the connection identifier (`uid`), source address (`src_addr`), and destination address (`dst_addr`).
+
+The fields available depend on the specific Zeek log. Check the log's `#fields` line to confirm the correct names before running the command.
+
+## 9. Combining Commands with Pipelines
+
+The pipe character (`|`) passes the output of one command to another command. This allows analysts to build simple processing workflows.
+
+For example, sort lines and remove duplicates:
+
+```bash
+sort test.txt | uniq
+```
+
+Count how many times each line appears:
+
+```bash
+sort test.txt | uniq -c
+```
+
+Extract a field and sort the results:
+
+```bash
+cut -f 1 test.txt | sort
+```
+
+Pipelines can reduce large amounts of text to a smaller set of results that are easier to investigate.
+
+## Key Takeaways
+
+- CLI tools provide flexible ways to process and investigate log data.
+- `cat`, `head`, and `tail` help inspect files.
+- `grep` searches for patterns and can exclude matching lines.
+- `cut` extracts fields or characters.
+- `sort`, `uniq`, and `wc` help organize and summarize data.
+- `sed` and `awk` select lines and process text.
+- `zeek-cut` extracts named fields from Zeek logs.
+- Pipelines combine commands into practical analysis workflows.
+
+## References
+
+- [Official Zeek Documentation](https://docs.zeek.org/)
+- [Zeek Website](https://zeek.org/)
