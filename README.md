@@ -124,8 +124,14 @@ Lab practical exercises documented. Further labs and detection experiments may b
 ## Lab Screenshots
 
 ### Lab Environment
+
 ![Lab environment](screenshots/lab-environment.png.png)
+
+### PCAP Analysis
 
 ![PCAP analysis](screenshots/pcap-analysis.png.png)
 
+### FTP Signature Results
+
 ![FTP signature results](screenshots/ftp-signature-results.png.png)
+
