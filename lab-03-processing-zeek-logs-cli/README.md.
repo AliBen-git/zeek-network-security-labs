@@ -224,7 +224,9 @@ cat signatures.log | zeek-cut uid src_addr dst_addr
 
 This command requests the connection identifier (`uid`), source address (`src_addr`), and destination address (`dst_addr`).
 
-The fields available depend on the specific Zeek log. Check the log's `#fields` line to confirm the correct names before running the command.
+The fields available depend on the specific Zeek log. Check the log's 
+
+`#fields` line to confirm the correct names before running the command.
 
 ## 9. Combining Commands with Pipelines
 
