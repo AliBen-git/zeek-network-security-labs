@@ -120,3 +120,14 @@ This repository is for educational and defensive cybersecurity purposes. All tra
 ## Status
 
 Lab practical exercises documented. Further labs and detection experiments may be added as the project develops.
+
+## Lab Screenshots
+
+### Lab Environment
+![Lab environment](../screenshots/lab-environment.png.png)
+
+### PCAP Analysis
+![PCAP analysis](../screenshots/pcap-analysis.png.png)
+
+### FTP Signature Results
+![FTP signature results](../screenshots/ftp-signature-results.png.png)
