@@ -6,6 +6,21 @@ This repository documents hands-on cybersecurity labs using **Zeek**, an open-so
 
 The project focuses on analyzing network traffic, writing Zeek scripts, creating signatures, and investigating security-related events through Zeek logs.
 
+## Table of Contents
+
+- [Objectives](#objectives)
+- [Environment](#environment)
+- [Lab 1: Zeek Installation](lab-01-zeek-installation/)
+- [Lab 2: Introduction to Zeek](lab-02-intro-to-zeek/)
+- [Lab 3: Processing Zeek Logs with CLI](lab-03-processing-zeek-logs-cli/)
+- [Lab 4: Zeek Scripting and Signatures](lab-04-zeek-scripting-signatures/)
+- [Example Commands](#example-commands)
+- [Key Takeaways](#key-takeaways)
+- [Lab Screenshots](#lab-screenshots)
+- [Disclaimer](#disclaimer)
+- [Status](#status)
+
+
 ## Objectives
 
 - Understand Zeek's event-driven scripting model.
